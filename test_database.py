@@ -86,7 +86,7 @@ class TestConsoleInterface(unittest.TestCase):
 class TestIntegration(unittest.TestCase):
     @patch('builtins.input', side_effect=["SET name Alice", "GET name", "END"])
     @patch('sys.stdout', new_callable=StringIO)
-    def test_full_flow(self, mock_stdout):
+    def test_full_flow(self, mock_stdout:MagicMock, mock_input:MagicMock):
         from database import main
         main()
         output = mock_stdout.getvalue().strip().split('\n')
@@ -94,7 +94,7 @@ class TestIntegration(unittest.TestCase):
 
     @patch('builtins.input', side_effect=["BEGIN", "SET balance 100", "ROLLBACK", "GET balance", "END"])
     @patch('sys.stdout', new_callable=StringIO)
-    def test_transaction_flow(self, mock_stdout):
+    def test_transaction_flow(self, mock_stdout:MagicMock, mock_input:MagicMock):
         from database import main
         main()
         output = mock_stdout.getvalue().strip().split('\n')

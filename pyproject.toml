@@ -1,0 +1,41 @@
+[project]
+name = "console-app"
+version = "0.1.0"
+description = "In-Memory Key-Value Database"
+authors = [{name = 'Dmitriy Grigorev', email = 'dimag@inbox.ru'}]
+readme = "README.md"
+requires-python = ">=3.11.9"
+dependencies = []
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+
+[tool.ruff.lint]
+# Включаем дополнительные правила
+select = [
+  "E", "F", "W",          # Базовые
+  "UP",                   # pyupgrade
+  "B",                    # bugbear
+  "C4",                   # comprehensions
+  "ANN",                  # annotations
+  "S",                    # security
+  "PD",                   # pandas
+  "PL",                   # pylint
+  "TRY",                  # tryceratops
+  "PERF",                 # performance
+  "PTH",                  # pathlib
+  "RUF",                  # ruff-specific
+]
+
+# Игнорируемые правила
+ignore = [
+  "E501",    # Длина строки
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["myapp"]
+required-imports = ["from __future__ import annotations"]
+
+[tool.ruff.lint.flake8-annotations]
+allow-star-arg-any = true

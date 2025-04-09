@@ -1,5 +1,6 @@
-from typing import Callable, Dict, List, Any
+from collections.abc import Callable
 from dataclasses import dataclass
+from typing import Any
 
 
 @dataclass
@@ -20,9 +21,9 @@ class EventBus:
     Maintains a registry of subscribers and allows publishing events to all subscribers.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """Initializes the EventBus with an empty subscribers dictionary."""
-        self._subscribers: Dict[str, List[Callable]] = {}
+        self._subscribers: dict[str, list[Callable]] = {}
 
     def subscribe(self, event_name: str, callback: Callable) -> None:
         """Subscribes a callback function to a specific event.
@@ -52,7 +53,7 @@ class Database:
     Handles various database commands and maintains transaction state.
     """
 
-    def __init__(self, event_bus: EventBus):
+    def __init__(self, event_bus: EventBus) -> None:
         """Initializes the Database with event bus and command handlers.
 
         Args:
@@ -182,7 +183,7 @@ class Database:
 class ConsoleInterface:
     """Provides console interface for interacting with the database."""
 
-    def __init__(self, event_bus: EventBus):
+    def __init__(self, event_bus: EventBus) -> None:
         """Initializes the console interface.
 
         Args:
